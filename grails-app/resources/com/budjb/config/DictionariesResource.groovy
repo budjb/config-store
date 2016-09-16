@@ -1,6 +1,6 @@
 package com.budjb.config
 
-import com.budjb.config.writer.JsonView
+import com.budjb.config.view.writer.JsonView
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 

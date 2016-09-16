@@ -1,6 +1,6 @@
 package com.budjb.config
 
-import com.budjb.config.writer.JsonView
+import com.budjb.config.view.writer.JsonView
 import grails.plugin.json.view.JsonViewTemplateEngine
 import groovy.text.Template
 import org.grails.plugins.jaxrs.provider.MessageBodyWriterSupport
