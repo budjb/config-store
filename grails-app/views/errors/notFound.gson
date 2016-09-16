@@ -1,0 +1,8 @@
+model {
+    String clazz
+    String id
+}
+
+json {
+    error g.message(code: 'domain.not.found', args: [clazz, id])
+}

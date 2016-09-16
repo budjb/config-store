@@ -1,0 +1,7 @@
+import com.budjb.config.Dictionary
+
+model {
+    Dictionary dictionary
+}
+
+json tmpl.'/dictionary/dictionary'(dictionary: dictionary)

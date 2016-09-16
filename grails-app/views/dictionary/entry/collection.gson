@@ -1,0 +1,7 @@
+import com.budjb.config.Entry
+
+model {
+    Set<Entry> entries = []
+}
+
+json tmpl.'/dictionary/entry/entry'(entries)
