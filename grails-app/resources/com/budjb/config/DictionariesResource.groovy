@@ -1,5 +1,6 @@
 package com.budjb.config
 
+import com.budjb.config.jaxrs.WebResponse
 import com.budjb.config.view.writer.JsonView
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
@@ -8,24 +9,24 @@ import javax.ws.rs.*
 import javax.ws.rs.core.Response
 
 @Path('/dictionaries')
-class DictionariesResource extends JsonViewResource {
+class DictionariesResource {
     @Autowired
     MessageSource messageSource
 
     @GET
     Response getAllDictionaries() {
-        return WebResponse.ok(jsonView('/dictionary/collection', [dictionaries: Dictionary.getAll()]))
+        return WebResponse.ok(new JsonView('/dictionary/collection', [dictionaries: Dictionary.getAll()]))
     }
 
     @POST
     Response createDictionary(Dictionary dictionary) {
         if (!dictionary.validate()) {
-            return WebResponse.unprocessableEntity(jsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: dictionary]))
+            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: dictionary]))
         }
 
         dictionary.save()
 
-        return WebResponse.created(jsonView('/dictionary/show', [dictionary: dictionary]))
+        return WebResponse.created(new JsonView('/dictionary/show', [dictionary: dictionary]))
     }
 
     @GET
@@ -34,7 +35,7 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
         }
 
         return WebResponse.ok(new JsonView('/dictionary/show', [dictionary: dictionary]))
@@ -46,7 +47,7 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
         }
 
         dictionary.delete()
@@ -60,12 +61,12 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
         }
 
         Set<Entry> entries = dictionary.getEntries() ?: []
 
-        return WebResponse.ok(jsonView('/dictionary/entry/collection.gson', [entries: entries]))
+        return WebResponse.ok(new JsonView('/dictionary/entry/collection.gson', [entries: entries]))
     }
 
     @GET
@@ -74,7 +75,7 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -82,10 +83,10 @@ class DictionariesResource extends JsonViewResource {
         }
 
         if (!entry) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
         }
 
-        return WebResponse.ok(jsonView('/dictionary/entry/show.gson', [entry: entry]))
+        return WebResponse.ok(new JsonView('/dictionary/entry/show.gson', [entry: entry]))
     }
 
     @PUT
@@ -95,7 +96,7 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -112,7 +113,7 @@ class DictionariesResource extends JsonViewResource {
             entry.save()
         }
 
-        return WebResponse.ok(jsonView('/dictionary/entry/show.gson', [entry: entry]))
+        return WebResponse.ok(new JsonView('/dictionary/entry/show.gson', [entry: entry]))
     }
 
     @DELETE
@@ -121,7 +122,7 @@ class DictionariesResource extends JsonViewResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -129,7 +130,7 @@ class DictionariesResource extends JsonViewResource {
         }
 
         if (!entry) {
-            return WebResponse.notFound(jsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
         }
 
         dict.removeFromEntries(entry)

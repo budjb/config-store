@@ -1,4 +1,4 @@
-package com.budjb.config
+package com.budjb.config.jaxrs
 
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
