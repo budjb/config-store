@@ -1,12 +1,24 @@
 package com.budjb.config
 
-import grails.rest.Resource
-
+/**
+ * A domain that implements a dictionary with key/value pairs. A dictionary
+ * can be used as the model to render a {@link ConfigTemplate}.
+ */
 class Dictionary {
     /**
      * Name of the dictionary.
      */
     String name
+
+    /**
+     * Date the config template was created.
+     */
+    Date dateCreated
+
+    /**
+     * Date the config template was last updated.
+     */
+    Date lastUpdated
 
     /**
      * Child relationships.
@@ -19,18 +31,11 @@ class Dictionary {
     static belongsTo = [parent: Dictionary]
 
     /**
-     * Sets the name of the dictionary as lower case.
-     *
-     * @param name
-     */
-    void setName(String name) {
-        this.name = name.toLowerCase()
-    }
-
-    /**
      * Field constraints.
      */
     static constraints = {
         name unique: true, nullable: false, blank: false
+        dateCreated nullable: true
+        lastUpdated nullable: true
     }
 }
