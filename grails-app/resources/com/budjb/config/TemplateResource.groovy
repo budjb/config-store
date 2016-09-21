@@ -18,7 +18,7 @@ class TemplateResource {
     @Consumes(['application/json'])
     Response createTemplate(ConfigTemplate configTemplate) {
         if (!configTemplate.validate()) {
-            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: configTemplate.getErrors(), domain: configTemplate]))
+            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: configTemplate.getErrors(), domain: ConfigTemplate]))
         }
 
         configTemplate.save()
@@ -32,7 +32,7 @@ class TemplateResource {
         ConfigTemplate template = ConfigTemplate.findByName(name)
 
         if (!template) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'ConfigTemplate', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: ConfigTemplate, id: name]))
         }
 
         return WebResponse.ok(new JsonView('/configTemplate/show', [configTemplate: template]))
@@ -44,7 +44,7 @@ class TemplateResource {
         ConfigTemplate template = ConfigTemplate.findByName(name)
 
         if (!template) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'ConfigTemplate', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: ConfigTemplate, id: name]))
         }
 
         template.delete()
@@ -59,7 +59,7 @@ class TemplateResource {
         ConfigTemplate template = ConfigTemplate.findByName(name)
 
         if (!template) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'ConfigTemplate', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: ConfigTemplate, id: name]))
         }
 
         return WebResponse.ok(template.getTemplate())

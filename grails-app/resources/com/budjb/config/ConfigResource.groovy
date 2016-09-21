@@ -20,13 +20,13 @@ class ConfigResource {
         Dictionary dictionary = Dictionary.findByName(dictionaryName)
 
         if (!dictionary) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]), MediaType.APPLICATION_JSON_TYPE)
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: dictionaryName]), MediaType.APPLICATION_JSON_TYPE)
         }
 
         ConfigTemplate template = ConfigTemplate.findByName(templateName)
 
         if (!template) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'ConfigTemplate', id: templateName]), MediaType.APPLICATION_JSON_TYPE)
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: ConfigTemplate, id: templateName]), MediaType.APPLICATION_JSON_TYPE)
         }
 
         return WebResponse.ok(templateService.renderTemplate(template, dictionary), MediaType.TEXT_PLAIN_TYPE)

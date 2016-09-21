@@ -21,7 +21,7 @@ class DictionariesResource {
     @POST
     Response createDictionary(Dictionary dictionary) {
         if (!dictionary.validate()) {
-            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: dictionary]))
+            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: Dictionary]))
         }
 
         dictionary.save()
@@ -35,7 +35,7 @@ class DictionariesResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: name]))
         }
 
         return WebResponse.ok(new JsonView('/dictionary/show', [dictionary: dictionary]))
@@ -47,7 +47,7 @@ class DictionariesResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: name]))
         }
 
         dictionary.delete()
@@ -61,7 +61,7 @@ class DictionariesResource {
         Dictionary dictionary = Dictionary.findByName(name)
 
         if (!dictionary) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: name]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: name]))
         }
 
         Set<Entry> entries = dictionary.getEntries() ?: []
@@ -75,7 +75,7 @@ class DictionariesResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -83,7 +83,7 @@ class DictionariesResource {
         }
 
         if (!entry) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Entry, id: keyName]))
         }
 
         return WebResponse.ok(new JsonView('/dictionary/entry/show.gson', [entry: entry]))
@@ -96,7 +96,7 @@ class DictionariesResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -122,7 +122,7 @@ class DictionariesResource {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
         if (!dict) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Dictionary', id: dictionaryName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: dictionaryName]))
         }
 
         Entry entry = Entry.find {
@@ -130,7 +130,7 @@ class DictionariesResource {
         }
 
         if (!entry) {
-            return WebResponse.notFound(new JsonView('/errors/notFound', [clazz: 'Entry', id: keyName]))
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Entry, id: keyName]))
         }
 
         dict.removeFromEntries(entry)

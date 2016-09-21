@@ -1,8 +1,8 @@
 model {
-    String clazz
+    Class domain
     String id
 }
 
 json {
-    error g.message(code: 'domain.not.found', args: [clazz, id])
+    error g.message(code: 'domain.not.found', args: [domain.getSimpleName(), id])
 }
