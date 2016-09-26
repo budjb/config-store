@@ -1,6 +1,6 @@
 package com.budjb.config
 
-import com.budjb.config.view.writer.JsonView
+import com.budjb.config.jaxrs.JsonView
 import grails.plugin.json.view.JsonViewTemplateEngine
 import groovy.text.Template
 import org.grails.plugins.jaxrs.provider.MessageBodyWriterSupport
@@ -33,9 +33,7 @@ class JsonViewProvider extends MessageBodyWriterSupport<JsonView> {
     @Override
     protected void writeTo(JsonView jsonView, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         Template template = jsonTemplateEngine.resolveTemplate(jsonView.getView())
-
         Writable writable = template.make(jsonView.getModel())
-
         OutputStreamWriter writer = new OutputStreamWriter(entityStream)
         writable.writeTo(writer)
         writer.flush()

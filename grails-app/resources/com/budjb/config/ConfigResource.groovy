@@ -1,12 +1,11 @@
 package com.budjb.config
 
 import com.budjb.config.jaxrs.WebResponse
-import com.budjb.config.view.writer.JsonView
+import com.budjb.config.jaxrs.JsonView
 
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
-import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
 

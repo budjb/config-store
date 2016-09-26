@@ -1,7 +1,7 @@
 package com.budjb.config
 
 import com.budjb.config.jaxrs.WebResponse
-import com.budjb.config.view.writer.JsonView
+import com.budjb.config.jaxrs.JsonView
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 

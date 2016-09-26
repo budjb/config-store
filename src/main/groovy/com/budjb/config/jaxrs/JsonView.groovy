@@ -1,4 +1,4 @@
-package com.budjb.config.view.writer
+package com.budjb.config.jaxrs
 
 import groovy.transform.CompileStatic
 

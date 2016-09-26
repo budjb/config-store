@@ -1,20 +1,25 @@
 package com.budjb.config
 
-import grails.transaction.Transactional
-import groovy.text.SimpleTemplateEngine
+import com.budjb.config.dictionary.ConfigurationTemplateHelper
+import com.budjb.config.yaml.YamlViewTemplate
+import com.budjb.config.yaml.YamlViewTemplateEngine
 import groovy.text.Template
 
-@Transactional
 class TemplateService {
+    /**
+     * Renders a given template with the configuration values provided by the given dictionary.
+     *
+     * @param configTemplate
+     * @param dictionary
+     * @return
+     */
     String renderTemplate(ConfigTemplate configTemplate, Dictionary dictionary) {
-        ConfigurationTemplateHelper broker = new ConfigurationTemplateHelper(dictionary)
-
-        SimpleTemplateEngine engine = new SimpleTemplateEngine()
+        YamlViewTemplateEngine engine = new YamlViewTemplateEngine()
         Template template = engine.createTemplate(configTemplate.getTemplate())
-        Writable writable = template.make([g: broker])
+        YamlViewTemplate writable = (YamlViewTemplate) template.make()
+        writable.setConfigurationTemplateHelper(new ConfigurationTemplateHelper(dictionary))
         StringWriter writer = new StringWriter()
         writable.writeTo(writer)
-
         return writer.toString()
     }
 }
