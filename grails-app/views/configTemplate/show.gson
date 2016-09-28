@@ -1,7 +1,0 @@
-import com.budjb.config.ConfigTemplate
-
-model {
-    ConfigTemplate configTemplate
-}
-
-json tmpl.'/configTemplate/configTemplate'(configTemplate: configTemplate)
