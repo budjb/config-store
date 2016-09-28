@@ -1,8 +1,7 @@
 package com.budjb.config
 
 /**
- * A domain that implements a dictionary with key/value pairs. A dictionary
- * can be used as the model to render a {@link ConfigTemplate}.
+ * A domain that implements a dictionary with key/value pairs.
  */
 class Dictionary {
     /**
