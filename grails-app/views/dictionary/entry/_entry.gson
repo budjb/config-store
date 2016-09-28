@@ -1,4 +1,4 @@
-import com.budjb.config.Entry
+import com.rackspace.vdo.config.Entry
 
 model {
     Entry entry

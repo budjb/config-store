@@ -50,7 +50,7 @@ environments:
 grails:
     profile: rest-api
     codegen:
-        defaultPackage: com.budjb.config
+        defaultPackage: com.rackspace.vdo.config
     spring:
         transactionManagement:
             proxies: false

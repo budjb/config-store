@@ -1,4 +1,4 @@
-package com.budjb.config.jaxrs
+package com.rackspace.vdo.config.jaxrs
 
 import groovy.transform.CompileStatic
 

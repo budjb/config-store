@@ -1,4 +1,4 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
 /**
  * A domain that implements a dictionary with key/value pairs.

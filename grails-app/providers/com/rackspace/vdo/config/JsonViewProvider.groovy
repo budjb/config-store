@@ -1,6 +1,6 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
-import com.budjb.config.jaxrs.JsonView
+import com.rackspace.vdo.config.jaxrs.JsonView
 import grails.plugin.json.view.JsonViewTemplateEngine
 import groovy.text.Template
 import org.grails.plugins.jaxrs.provider.MessageBodyWriterSupport

@@ -1,15 +1,15 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
 class UrlMappings {
 
     static mappings = {
-        "/$controller/$action?/$id?(.$format)?"{
+        "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here
             }
         }
 
-        "/"(controller: 'application', action:'index')
+        "/"(controller: 'application', action: 'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
     }

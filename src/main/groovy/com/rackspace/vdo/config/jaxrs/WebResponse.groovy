@@ -1,4 +1,4 @@
-package com.budjb.config.jaxrs
+package com.rackspace.vdo.config.jaxrs
 
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response

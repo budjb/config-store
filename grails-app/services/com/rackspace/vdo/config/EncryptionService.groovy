@@ -1,4 +1,4 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
 import org.springframework.beans.factory.InitializingBean
 
@@ -48,7 +48,7 @@ class EncryptionService implements InitializingBean {
 
         cipher.init(
             Cipher.ENCRYPT_MODE,
-            new SecretKeySpec((byte[])password.encodeAsMD5Bytes(), KEY_TYPE_NAME),
+            new SecretKeySpec((byte[]) password.encodeAsMD5Bytes(), KEY_TYPE_NAME),
             new IvParameterSpec(iv)
         )
 
@@ -69,7 +69,7 @@ class EncryptionService implements InitializingBean {
      * @return
      */
     String decrypt(String source) {
-        byte[] encrypted = (byte[])source.getBytes(CHARSET).decodeBase64()
+        byte[] encrypted = (byte[]) source.getBytes(CHARSET).decodeBase64()
 
         Cipher cipher = Cipher.getInstance(CIPHER_NAME)
 
@@ -82,7 +82,7 @@ class EncryptionService implements InitializingBean {
 
         cipher.init(
             Cipher.DECRYPT_MODE,
-            new SecretKeySpec((byte[])password.encodeAsMD5Bytes(), KEY_TYPE_NAME),
+            new SecretKeySpec((byte[]) password.encodeAsMD5Bytes(), KEY_TYPE_NAME),
             new IvParameterSpec(iv)
         )
 

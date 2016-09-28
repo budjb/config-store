@@ -1,7 +1,8 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
-import com.budjb.config.jaxrs.JsonView
-import com.budjb.config.jaxrs.WebResponse
+import com.rackspace.vdo.config.jaxrs.JsonView
+import com.rackspace.vdo.config.jaxrs.WebResponse
+import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 
@@ -14,11 +15,13 @@ class DictionariesResource {
     MessageSource messageSource
 
     @GET
+    @Secured(['ROLE_VIEW'])
     Response getAllDictionaries() {
         return WebResponse.ok(new JsonView('/dictionary/collection', [dictionaries: Dictionary.getAll()]))
     }
 
     @POST
+    @Secured(['ROLE_MODIFY'])
     Response createDictionary(Dictionary dictionary) {
         if (!dictionary.validate()) {
             return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: Dictionary]))
@@ -31,6 +34,7 @@ class DictionariesResource {
 
     @GET
     @Path('/{name}')
+    @Secured(['ROLE_VIEW'])
     Response getDictionary(@PathParam('name') String name) {
         Dictionary dictionary = Dictionary.findByName(name)
 
@@ -43,6 +47,7 @@ class DictionariesResource {
 
     @DELETE
     @Path('/{name}')
+    @Secured(['ROLE_MODIFY'])
     Response deleteDictionary(@PathParam('name') String name) {
         Dictionary dictionary = Dictionary.findByName(name)
 
@@ -57,6 +62,7 @@ class DictionariesResource {
 
     @GET
     @Path('/{name}/entries')
+    @Secured(['ROLE_VIEW'])
     Response getDictionaryEntries(@PathParam('name') String name) {
         Dictionary dictionary = Dictionary.findByName(name)
 
@@ -71,6 +77,7 @@ class DictionariesResource {
 
     @GET
     @Path('/{name}/entries/{key}')
+    @Secured(['ROLE_VIEW'])
     Response getEntry(@PathParam('name') String dictionaryName, @PathParam('key') String keyName) {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
@@ -92,6 +99,7 @@ class DictionariesResource {
     @PUT
     @Path('/{name}/entries/{key}')
     @Consumes(['text/plain'])
+    @Secured(['ROLE_MODIFY'])
     Response addEntry(@PathParam('name') String dictionaryName, @PathParam('key') String keyName, String value) {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 
@@ -118,6 +126,7 @@ class DictionariesResource {
 
     @DELETE
     @Path('/{name}/entries/{key}')
+    @Secured(['ROLE_MODIFY'])
     Response deleteEntry(@PathParam('name') String dictionaryName, @PathParam('key') String keyName) {
         Dictionary dict = Dictionary.findByName(dictionaryName)
 

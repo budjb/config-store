@@ -1,4 +1,4 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

@@ -1,4 +1,4 @@
-import com.budjb.config.Dictionary
+import com.rackspace.vdo.config.Dictionary
 
 model {
     List<Dictionary> dictionaries = []

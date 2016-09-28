@@ -1,4 +1,4 @@
-package com.budjb.config
+package com.rackspace.vdo.config
 
 import grails.core.GrailsApplication
 import grails.plugins.GrailsPluginManager

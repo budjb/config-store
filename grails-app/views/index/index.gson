@@ -1,7 +1,0 @@
-model {
-    Map stuff
-}
-
-json {
-    stuff stuff
-}
