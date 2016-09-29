@@ -1,7 +1,4 @@
 package com.rackspace.vdo.config
-
-import javax.persistence.Transient
-
 /**
  * Represents a key/value pair stored in a {@link Dictionary}.
  */
@@ -34,8 +31,7 @@ class Entry {
     /**
      * Encryption service.
      */
-    @Transient
-    EncryptionService encryptionService
+    EncryptionUtil encryptionUtil
 
     /**
      * Field constraints.
@@ -48,12 +44,17 @@ class Entry {
     }
 
     /**
+     * Transient fields.
+     */
+    static transients = ['encryptionUtil']
+
+    /**
      * Decrypts the value of the entry after it is loaded from the database.
      *
      * @return
      */
     def afterLoad() {
-        value = encryptionService.decrypt(value)
+        value = encryptionUtil.decrypt(value)
     }
 
     /**
@@ -62,7 +63,7 @@ class Entry {
      * @return
      */
     def beforeInsert() {
-        value = encryptionService.encrypt(value)
+        value = encryptionUtil.encrypt(value)
     }
 
     /**
@@ -71,6 +72,6 @@ class Entry {
      * @return
      */
     def beforeUpdate() {
-        value = encryptionService.encrypt(value)
+        value = encryptionUtil.encrypt(value)
     }
 }

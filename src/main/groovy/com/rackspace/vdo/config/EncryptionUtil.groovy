@@ -7,7 +7,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import java.security.SecureRandom
 
-class EncryptionService implements InitializingBean {
+class EncryptionUtil implements InitializingBean {
     /**
      * Name of the cipher to use for encryption.
      */

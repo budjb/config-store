@@ -30,6 +30,7 @@ ext {
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://maven.pc.rackspace.com/artifactory/plugins-release-local" }
 }
 
 dependencyManagement {
@@ -72,4 +73,6 @@ dependencies {
     compile "org.grails.plugins:views-json:1.1.0.RC2"
     compile "org.grails.plugins:spring-security-core:3.1.1"
     compile "org.grails.plugins:spring-security-jaxrs:3.0.0"
+    compile "com.rackspace.vdo:spring-security-rackspace-global-auth:3.0.2"
+    compile "com.rackspace.vdo:vdo-stdlib:1.0.5"
 }
