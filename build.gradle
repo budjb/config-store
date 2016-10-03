@@ -75,4 +75,12 @@ dependencies {
     compile "org.grails.plugins:spring-security-jaxrs:3.0.0"
     compile "com.rackspace.vdo:spring-security-rackspace-global-auth:3.0.2"
     compile "com.rackspace.vdo:vdo-stdlib:1.0.5"
+
+    runtime "mysql:mysql-connector-java:5.1.39"
+}
+
+war {
+    if (project.hasProperty('warFilename')) {
+        archiveName = project.property('warFilename')
+    }
 }
