@@ -12,6 +12,9 @@ import javax.ws.rs.core.Response
 @Path('/dictionaries')
 class DictionariesResource {
     @Autowired
+    DictionaryCompiler dictionaryCompiler
+
+    @Autowired
     MessageSource messageSource
 
     @GET
@@ -43,6 +46,19 @@ class DictionariesResource {
         }
 
         return WebResponse.ok(new JsonView('/dictionary/show', [dictionary: dictionary]))
+    }
+
+    @GET
+    @Path('/{name}/compiled')
+    @Secured(['ROLE_VIEW'])
+    Response compileDictionary(@PathParam('name') String name) {
+        Dictionary dictionary = Dictionary.findByName(name)
+
+        if (!dictionary) {
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: name]))
+        }
+
+        return WebResponse.ok(new JsonView('/dictionary/compiled', [dictionary: dictionary, values: dictionaryCompiler.compile(dictionary)]))
     }
 
     @DELETE

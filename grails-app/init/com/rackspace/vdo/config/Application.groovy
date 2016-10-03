@@ -16,10 +16,11 @@ class Application extends GrailsAutoConfiguration implements VdoApplication {
 
     @Override
     Closure doWithSpring() {{ ->
-        'jsonTemplateEngine'(JsonViewTemplateEngine, new JsonViewConfiguration())
-        'securityContextRepository'(NullSecurityContextRepository)
-        'encryptionUtil'(EncryptionUtil) {
+        jsonTemplateEngine(JsonViewTemplateEngine, new JsonViewConfiguration())
+        securityContextRepository(NullSecurityContextRepository)
+        encryptionUtil(EncryptionUtil) {
             password = Holders.config.crypto.password
         }
+        dictionaryCompiler(DictionaryCompiler)
     }}
 }
