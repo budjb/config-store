@@ -14,7 +14,7 @@ buildscript {
 }
 
 version "0.1"
-group "com.budjb.config"
+group "com.rackspace.vdo"
 
 apply plugin:"eclipse"
 apply plugin:"idea"

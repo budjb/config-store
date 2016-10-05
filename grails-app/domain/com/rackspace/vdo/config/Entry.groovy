@@ -44,6 +44,13 @@ class Entry {
     }
 
     /**
+     * Field mapping.
+     */
+    static mapping = {
+        key column: '_key'
+    }
+
+    /**
      * Transient fields.
      */
     static transients = ['encryptionUtil']
