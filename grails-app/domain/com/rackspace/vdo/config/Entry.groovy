@@ -1,4 +1,5 @@
 package com.rackspace.vdo.config
+
 /**
  * Represents a key/value pair stored in a {@link Dictionary}.
  */

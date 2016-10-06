@@ -4,7 +4,7 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://maven.pc.rackspace.com/artifactory/grails-core" }
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
@@ -29,7 +29,7 @@ ext {
 
 repositories {
     mavenLocal()
-    maven { url "https://repo.grails.org/grails/core" }
+    maven { url "https://maven.pc.rackspace.com/artifactory/grails-core" }
     maven { url "https://maven.pc.rackspace.com/artifactory/plugins-release-local" }
 }
 

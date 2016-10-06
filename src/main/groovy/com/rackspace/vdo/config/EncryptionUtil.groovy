@@ -7,6 +7,14 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import java.security.SecureRandom
 
+/**
+ * A utility class that provides encryption/decryption functionality. These methods
+ * utilize the AES-128 cipher, and only require the Grails configuration key of
+ * <pre>crypto.password</pre> to be set to some strong password.
+ *
+ * A salt (or IV) is used to encrypt each value, and it is prepended to the result
+ * before the base64 string is returned. Decryption does the reverse.
+ */
 class EncryptionUtil implements InitializingBean {
     /**
      * Name of the cipher to use for encryption.
