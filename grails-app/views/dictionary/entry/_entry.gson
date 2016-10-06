@@ -1,0 +1,21 @@
+import com.rackspace.vdo.config.Entry
+
+model {
+    Entry entry
+}
+
+json {
+    hal.links {
+        self {
+            href g.link(absolute: true, uri: "/dictionaries/${entry.dictionary.name}/entries/${entry.key}")
+            hreflang "en"
+            type "application/json"
+        }
+        dictionary {
+            href g.link(absolute: true, uri: "/dictionaries/${entry.dictionary.name}")
+            hreflang "en"
+            type "application/json"
+        }
+    }
+    g.inline(entry)
+}

@@ -1,0 +1,21 @@
+import com.rackspace.vdo.config.Dictionary
+
+model {
+    Dictionary dictionary
+}
+
+json {
+    hal.links {
+        self {
+            href g.link(absolute: true, uri: "/dictionaries/${dictionary.name}")
+            hreflang "en"
+            type "application/json"
+        }
+        values {
+            href g.link(absolute: true, uri: "/dictionaries/${dictionary.name}/entries")
+            hreflang "en"
+            type "application/json"
+        }
+    }
+    g.inline(dictionary)
+}

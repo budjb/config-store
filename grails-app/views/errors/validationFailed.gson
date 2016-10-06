@@ -1,0 +1,11 @@
+import org.springframework.validation.Errors
+
+model {
+    Class domain
+    Errors errors
+}
+
+json {
+    error g.message(code: 'domain.validation.failed', args: [domain.getSimpleName()])
+    messages errors.getFieldErrors().collect { g.message(message: it) }
+}
