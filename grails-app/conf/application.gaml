@@ -1,11 +1,5 @@
 import grails.util.Environment
 
-/*
- * Besides the standard configuration options, the following keys are required to compile this
- * configuration file:
- *
- * - config-store.crypto.password
- */
 yaml {
     if (Environment.isDevelopmentMode()) {
         dataSource localMemDb()
@@ -18,9 +12,9 @@ yaml {
         clients {
             globalAuth {
                 v2 {
-                    enabled = true
-                    baseAddress = d.get('identity.url')
-                    adminIdentifier = 'admin'
+                    enabled true
+                    baseAddress d.get('identity.url')
+                    adminIdentifier 'admin'
 
                     accounts = [
                         [
