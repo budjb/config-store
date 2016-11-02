@@ -13,7 +13,7 @@ buildscript {
     }
 }
 
-version "0.1.1-beta"
+version "0.1.2-beta"
 group "com.rackspace.vdo"
 
 apply plugin:"eclipse"
@@ -69,12 +69,12 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
-    compile "org.grails.plugins:jaxrs-jersey1:3.0.3"
+    compile "org.grails.plugins:jaxrs-jersey1:3.0.4"
     compile "org.grails.plugins:views-json:1.1.0.RC2"
     compile "org.grails.plugins:spring-security-core:3.1.1"
     compile "org.grails.plugins:spring-security-jaxrs:3.0.0"
     compile "com.rackspace.vdo:spring-security-rackspace-global-auth:3.0.2"
-    compile "com.rackspace.vdo:vdo-stdlib:1.0.7"
+    compile "com.rackspace.vdo:vdo-stdlib:1.0.9"
 
     runtime "mysql:mysql-connector-java:5.1.39"
 }
