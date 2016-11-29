@@ -16,7 +16,7 @@ yaml {
                     baseAddress d.get('identity.url')
                     adminIdentifier 'admin'
 
-                    accounts = [
+                    accounts([
                         [
                             username  : d.get('identity.accounts.vdo.username'),
                             password  : d.get('identity.accounts.vdo.password'),
@@ -24,7 +24,7 @@ yaml {
                             type      : 'system',
                             isDefault : true
                         ]
-                    ]
+                    ])
                 }
             }
         }
