@@ -33,4 +33,10 @@ yaml {
     crypto {
         password d.get('config-store.crypto.password')
     }
+
+    if (!Environment.isDevelopmentMode()) {
+        grails {
+            serverURL d.get('config-store.url')
+        }
+    }
 }
