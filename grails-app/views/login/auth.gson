@@ -1,0 +1,5 @@
+response.status 401
+
+json {
+    error "a valid Identity authentication token is required"
+}

@@ -30,9 +30,30 @@ class DictionariesResource {
             return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: Dictionary]))
         }
 
-        dictionary.save()
+        dictionary.save(failOnError: true)
 
         return WebResponse.created(new JsonView('/dictionary/show', [dictionary: dictionary]))
+    }
+
+    @PUT
+    @Secured(['ROLE_MODIFY'])
+    @Path('/{name}')
+    Response updateDictionary(@PathParam('name') String name, Map values) {
+        Dictionary dictionary = Dictionary.findByName(name)
+
+        if (!dictionary) {
+            return WebResponse.notFound(new JsonView('/errors/notFound', [domain: Dictionary, id: name]))
+        }
+
+        dictionary.setProperties(values)
+
+        if (!dictionary.validate()) {
+            return WebResponse.unprocessableEntity(new JsonView('/errors/validationFailed', [errors: dictionary.getErrors(), domain: Dictionary]))
+        }
+
+        dictionary.save(failOnError: true)
+
+        return WebResponse.ok(new JsonView('/dictionary/show', [dictionary: dictionary]))
     }
 
     @GET
